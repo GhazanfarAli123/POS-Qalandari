@@ -1,10 +1,12 @@
 'use client'
 
 import * as React from 'react'
-import { Box, ThemeProvider, Avatar, CircularProgress } from '@mui/material'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+
 import Cards from '../../../components/Cards'
+
+import { Box, ThemeProvider, Avatar, CircularProgress } from '@mui/material'
 
 export default function Page() {
   const [category, setCategory] = useState([])

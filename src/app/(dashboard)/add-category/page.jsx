@@ -1,10 +1,12 @@
 'use client'
 
+// External package imports
 import * as React from 'react'
-import { Box, ThemeProvider, TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Cookies from 'js-cookie'
+
+// MUI component imports
+import { Box, ThemeProvider, TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 
 export default function Page() {
   const [category, setCategory] = useState('')
