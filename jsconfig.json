@@ -42,6 +42,12 @@
       ],
       "@views/*": [
         "./src/views/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@models/*": [
+        "./src/models/*"
       ]
     }
   },
