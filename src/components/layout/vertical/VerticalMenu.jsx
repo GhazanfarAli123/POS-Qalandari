@@ -65,11 +65,11 @@ const VerticalMenu = ({ scrollMenu }) => {
         <MenuItem href='/add-message' icon={<i className='tabler-plus' />}>
           Add Market Item
         </MenuItem>
-        <MenuItem href='/add-category' icon={<i className='tabler-plus' />}>
-          Add Category
-        </MenuItem>
         <MenuItem href='/get-category' icon={<i className='tabler-category' />}>
           Category
+        </MenuItem>
+        <MenuItem href='/add-category' icon={<i className='tabler-plus' />}>
+          Add Category
         </MenuItem>
         {/* <MenuItem href='/get-category' icon={<i className='tabler-info-circle' />}>
           About

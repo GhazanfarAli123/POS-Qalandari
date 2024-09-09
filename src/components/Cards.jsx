@@ -77,13 +77,9 @@ export default function RecipeReviewCard({ name, group, user, date, image, price
         <Typography variant='body2' sx={{ color: 'text.secondary' }}>
           {status}
         </Typography>
-        {users.name === 'Ghazanfar' || users.name === 'Shan' ? (
-          <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-            <a href={`update-mkitm/${id}`}>Edit</a>
-          </Typography>
-        ) : (
-          ''
-        )}
+        <Typography variant='body2' sx={{ color: 'text.secondary' }}>
+          <a href={`update-mkitm/${id}`}>Edit</a>
+        </Typography>
       </CardContent>
     </Card>
   )
