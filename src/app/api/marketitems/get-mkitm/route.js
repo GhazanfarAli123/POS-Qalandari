@@ -1,8 +1,8 @@
-import dbConnect from '../../../../utils/dbconnect'
-import MarketGetItems from '../../../../models/MarketGetItems'
-import '../../../../models/Group'
-import '../../../../models/Users'
-import '../../../../models/Category'
+import dbConnect from '@utils/dbconnect'
+import MarketGetItems from '@models/MarketGetItems'
+import '@models/Group'
+import '@models/Users'
+import '@models/Category'
 
 export async function GET(req, res) {
   await dbConnect()

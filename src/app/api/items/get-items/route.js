@@ -1,8 +1,8 @@
-import dbConnect from '../../../../utils/dbconnect'
-import Items from '../../../../models/Items'
-import '../../../../models/Group'
-import '../../../../models/Users'
-import '../../../../models/Category'
+import dbConnect from '@utils/dbconnect'
+import Items from '@models/Items'
+import '@models/Group'
+import '@models/Users'
+import '@models/Category'
 
 export async function GET(req, res) {
   await dbConnect()

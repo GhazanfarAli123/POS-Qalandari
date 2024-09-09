@@ -1,5 +1,5 @@
-import dbConnect from '../../../../utils/dbconnect'
-import Category from '../../../../models/Category'
+import dbConnect from '@utils/dbconnect'
+import Category from '@models/Category'
 import Slugify from 'slugify'
 
 export async function POST(req, res) {

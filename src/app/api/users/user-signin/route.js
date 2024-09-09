@@ -1,6 +1,6 @@
 // app/api/users/route.js
-import dbConnect from '../../../../utils/dbconnect'
-import User from '../../../../models/Users'
+import dbConnect from '@utils/dbconnect'
+import User from '@models/Users'
 import jwt from 'jsonwebtoken'
 
 // Environment Variables
