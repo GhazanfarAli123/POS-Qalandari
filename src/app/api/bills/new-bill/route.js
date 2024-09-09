@@ -1,6 +1,8 @@
 // app/api/users/route.js
 import dbConnect from '@utils/dbconnect'
+
 import Bills from '@models/Bills'
+
 import Slugify from 'slugify'
 
 export async function POST(req, res) {

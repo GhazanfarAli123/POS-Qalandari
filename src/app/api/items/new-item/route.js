@@ -1,6 +1,8 @@
 // app/api/users/route.js
 import dbConnect from '@utils/dbconnect'
+
 import Items from '@models/Items'
+
 import Slugify from 'slugify'
 
 export async function POST(req, res) {

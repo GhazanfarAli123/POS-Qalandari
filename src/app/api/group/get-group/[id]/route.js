@@ -1,4 +1,5 @@
 import dbConnect from '@utils/dbconnect'
+
 import Group from '@models/Group'
 
 export async function GET(req, { params }) {

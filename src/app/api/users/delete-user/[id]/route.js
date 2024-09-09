@@ -1,4 +1,5 @@
 import dbConnect from '@utils/dbconnect'
+
 import User from '@models/Users'
 
 export async function DELETE(req, { params }) {

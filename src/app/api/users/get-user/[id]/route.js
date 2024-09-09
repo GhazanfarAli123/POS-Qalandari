@@ -1,6 +1,8 @@
 // app/api/users/[id]/route.js
 import dbConnect from '@utils/dbconnect'
+
 import User from '@models/Users'
+
 import Group from '@models/Group' // Ensure you import the Group model
 
 export async function GET(req, { params }) {

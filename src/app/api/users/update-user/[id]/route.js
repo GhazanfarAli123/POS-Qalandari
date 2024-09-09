@@ -1,5 +1,7 @@
 import dbConnect from '@utils/dbconnect'
+
 import User from '@models/Users'
+
 import slugify from 'slugify'
 
 export async function PUT(req, { params }) {

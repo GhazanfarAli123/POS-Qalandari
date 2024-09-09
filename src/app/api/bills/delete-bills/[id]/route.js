@@ -1,4 +1,5 @@
 import dbConnect from '@utils/dbconnect'
+
 import Bill from '@models/Bills'
 
 export async function DELETE(req, { params }) {

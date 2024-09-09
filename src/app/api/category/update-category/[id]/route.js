@@ -1,5 +1,7 @@
 import dbConnect from '@utils/dbconnect'
+
 import Category from '@models/Category'
+
 import slugify from 'slugify'
 
 export async function PUT(req, { params }) {

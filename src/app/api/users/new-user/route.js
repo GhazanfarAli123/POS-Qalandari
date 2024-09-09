@@ -1,7 +1,10 @@
 // app/api/users/route.js
 import dbConnect from '@utils/dbconnect'
+
 import User from '@models/Users' // Ensure this matches the correct file path
+
 import Slugify from 'slugify'
+
 import bcrypt from 'bcrypt'
 
 export async function POST(req, res) {

@@ -1,5 +1,7 @@
 import dbConnect from '@utils/dbconnect'
+
 import Group from '@models/Group'
+
 import Slugify from 'slugify'
 
 export async function POST(req, res) {
