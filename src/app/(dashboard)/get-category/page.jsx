@@ -13,7 +13,8 @@ export default function Page() {
 
   const categoryData = async () => {
     try {
-      const { data } = await axios.get('/api/category/get-categories')
+      const res = await fetch('/api/category/get-categories', { cache: 'no-store', next: { revalidate: 0 } })
+      const data = await res.json()
       setCategory(data.category)
     } catch (err) {
       console.error(err)
