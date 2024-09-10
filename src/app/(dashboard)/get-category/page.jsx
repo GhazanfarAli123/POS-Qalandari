@@ -1,38 +1,28 @@
-import * as React from 'react'
+import { use } from 'react'
 import { Box, ThemeProvider, Avatar, CircularProgress } from '@mui/material'
 
-export default function Page({ category }) {
-  return (
-    <>
-      <div className='category-items'>
-        {category.map(e => (
-          <div key={e._id}>
-            {e.name}
-            <a href={`/update-category/${e._id}`}>Edit</a>
-          </div>
-        ))}
-      </div>
-    </>
-  )
+// Fetch data directly in a server component
+async function fetchCategoryData() {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/category/get-categories`, { cache: 'no-store' })
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  const data = await res.json()
+  return data.category || []
 }
 
-// This function runs on the server side and fetches data before rendering the page
-export async function getServerSideProps() {
-  try {
-    const res = await fetch(`${process.env.API_BASE_URL}/api/category/get-categories`, { cache: 'no-store' })
-    const data = await res.json()
+export default async function Page() {
+  // Fetch data on the server side
+  const category = await fetchCategoryData()
 
-    return {
-      props: {
-        category: data.category || [] // Pass fetched data as props to the component
-      }
-    }
-  } catch (err) {
-    console.error(err)
-    return {
-      props: {
-        category: [] // Handle errors by providing an empty array or some default data
-      }
-    }
-  }
+  return (
+    <div className='category-items'>
+      {category.map(e => (
+        <div key={e._id}>
+          {e.name}
+          <a href={`/update-category/${e._id}`}>Edit</a>
+        </div>
+      ))}
+    </div>
+  )
 }
