@@ -3,7 +3,7 @@ import dbConnect from '@utils/dbconnect'
 import Category from '@models/Category'
 
 export async function GET(req, res) {
-  await dbConnect()
+  dbConnect()
 
   try {
     const category = await Category.find({})
