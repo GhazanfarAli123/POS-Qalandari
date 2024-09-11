@@ -83,8 +83,6 @@ export default function Page() {
 
       mkitm.append('name', name)
       mkitm.append('quantity', quantity)
-      mkitm.append('group', user.group)
-      mkitm.append('user', user.id)
       mkitm.append('category', categoryId)
       mkitm.append('image', image)
       mkitm.append('price', price)
@@ -137,7 +135,7 @@ export default function Page() {
             label='Quantity'
             defaultValue='Quantity'
           />
-          {user.name === 'Ghazanfar' || user.name === 'Shan' ? (
+          {user.name == 'Ghazanfar' || user.name == 'Shan' ? (
             <TextField
               type='number'
               required
