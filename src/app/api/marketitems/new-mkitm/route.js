@@ -47,6 +47,13 @@ export async function POST(req, res) {
     timeZone: 'Asia/Karachi'
   })
 
+  const currentDate = new Date().toLocaleString('en-US', {
+    timeZone: 'Asia/Karachi'
+  })
+
+  const dateObj = new Date(currentDate)
+  const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}-${String(dateObj.getMonth() + 1).padStart(2, '0')}-${dateObj.getFullYear()}`
+
   let imagePath = null
   if (imageFile && imageFile.name && imageFile.type.startsWith('image/')) {
     imagePath = await saveFile(imageFile)
@@ -61,7 +68,8 @@ export async function POST(req, res) {
     category,
     image: imagePath,
     price,
-    time: currentTime
+    time: currentTime,
+    date: formattedDate
   })
   await item.save()
 

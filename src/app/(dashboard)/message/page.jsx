@@ -8,6 +8,12 @@ import Cards from '../../../components/Cards'
 
 import { Box, ThemeProvider, Avatar, CircularProgress } from '@mui/material'
 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
+import { TrendingUpRounded } from '@mui/icons-material'
+import dayjs from 'dayjs'
+
 export default function Page() {
   const [itemsToGet, setItemsToGet] = useState([])
   const [itemToGet, setItemToGet] = useState([])
@@ -17,6 +23,9 @@ export default function Page() {
   const [categoryItem, setCategoryItem] = useState([])
   const [loading, setLoading] = useState(false)
   const [group, setGroup] = useState([])
+  const [showDate, setShowDate] = useState(false)
+  const [showGroup, setShowGroup] = useState(false)
+  const [selectedDate, setSelectedDate] = useState(dayjs())
 
   const [showCategroy, setShowCategroy] = useState(true)
 
@@ -66,13 +75,31 @@ export default function Page() {
     }
   }
 
+  const itemDataDate = async date => {
+    try {
+      setItemToGet([])
+      setLoading(true)
+      const formattedDate = date.format('DD-MM-YYYY') // Format the date for API request
+      const { data } = await axios.get(`/api/marketitems/get-mkitm-date/${formattedDate}`)
+      setLoading(false)
+      setItemToGet(data.marketitems)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   const groupData = async () => {
     try {
-      const { data } = await axios.get('api/group/get-groups')
+      const { data } = await axios.get('/api/group/get-groups')
       setGroups(data.group)
     } catch (err) {
       console.error(err)
     }
+  }
+
+  const handleDateChange = newDate => {
+    setSelectedDate(newDate)
+    itemDataDate(newDate)
   }
 
   useEffect(() => {
@@ -103,17 +130,32 @@ export default function Page() {
             }}
           >
             <div className='category-buttons'>
-              {!showCategroy
+              {showCategroy
                 ? category.map(e => (
                     <button className='category-button' onClick={() => itemDataCategory(e._id)} key={e._id}>
                       {e.name}
                     </button>
                   ))
-                : groups.map(e => (
+                : ''}
+              {showGroup
+                ? groups.map(e => (
                     <button className='category-button' onClick={() => itemData(e._id)} key={e._id}>
                       {e.name}
                     </button>
-                  ))}
+                  ))
+                : ''}
+
+              {showDate ? (
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DateCalendar
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    onClick={() => itemDataDate(selectedDate)}
+                  />
+                </LocalizationProvider>
+              ) : (
+                ''
+              )}
             </div>
             <div className='item-box'>
               {loading ? <CircularProgress color='success' /> : ''}
@@ -151,14 +193,41 @@ export default function Page() {
               ))} */}
             <div className='avatar-name'>
               <Avatar>G</Avatar>
-              <div className='group-name' onClick={() => setShowCategroy(true)}>
+              <div
+                className='group-name'
+                onClick={() => {
+                  setShowCategroy(false)
+                  setShowGroup(TrendingUpRounded)
+                  setShowDate(false)
+                }}
+              >
                 Group
               </div>
             </div>
             <div className='avatar-name'>
               <Avatar>C</Avatar>
-              <div className='group-name' onClick={() => setShowCategroy(false)}>
+              <div
+                className='group-name'
+                onClick={() => {
+                  setShowCategroy(true)
+                  setShowGroup(false)
+                  setShowDate(false)
+                }}
+              >
                 Category
+              </div>
+            </div>
+            <div className='avatar-name'>
+              <Avatar>D</Avatar>
+              <div
+                className='group-name'
+                onClick={() => {
+                  setShowCategroy(false)
+                  setShowGroup(false)
+                  setShowDate(true)
+                }}
+              >
+                Date
               </div>
             </div>
           </Box>

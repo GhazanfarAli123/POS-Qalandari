@@ -15,6 +15,7 @@ export default function Page() {
   const [name, setName] = useState('')
   const [quantity, setQuantity] = useState('')
   const [status, setStatus] = useState('pending')
+  const [adding, setAdding] = useState(false)
 
   const handleChange = event => {
     setCategoryId(event.target.value)
@@ -49,6 +50,8 @@ export default function Page() {
 
   const createItem = async e => {
     try {
+      e.preventDefault()
+      setAdding(true)
       const mkitm = new FormData()
 
       mkitm.append('name', name)
@@ -61,6 +64,7 @@ export default function Page() {
 
       const { data } = await axios.post('/api/marketitems/new-mkitm', mkitm)
       // Handle success response here
+      setAdding(false)
       alert('Item created successfully')
     } catch (e) {
       console.error(e)
@@ -154,7 +158,7 @@ export default function Page() {
           </div>
           <div>
             <button type='submit' className='submit-button'>
-              Submit
+              {adding ? 'Adding....' : 'Submit'}
             </button>
           </div>
         </div>

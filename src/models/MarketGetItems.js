@@ -34,6 +34,9 @@ const MarketGetSchema = new mongoose.Schema({
   },
   time: {
     type: String
+  },
+  date: {
+    type: String
   }
 })
 

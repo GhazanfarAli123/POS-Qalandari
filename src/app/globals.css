@@ -219,6 +219,14 @@ code {
   margin-top: 50px;
 }
 
+.submit-button-edit {
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #4245a8;
+  margin-left: 5px;
+}
+
 #demo-simple-select {
   width: 200px !important;
   margin-top: 5px;
@@ -241,4 +249,8 @@ code {
 .category-items div a {
   margin-left: 10px;
   font-size: 10px;
+}
+
+.mui-1rtg91x-MuiDateCalendar-root {
+  margin: 0 !important;
 }

@@ -88,6 +88,7 @@ export default function Page() {
       mkitm.append('price', price)
       mkitm.append('itemstatus', status)
       const { data } = await axios.patch(`/api/marketitems/update-mkitm/${extractedId}`, mkitm)
+
       alert('item updated successfully')
     } catch (e) {
       console.error(e)

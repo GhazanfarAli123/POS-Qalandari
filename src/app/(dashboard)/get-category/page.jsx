@@ -13,9 +13,23 @@ export default function Page() {
 
   const categoryData = async () => {
     try {
-      const res = await fetch('/api/category/get-categories', { cache: 'no-store', next: { revalidate: 0 } })
+      const res = await fetch('/api/category/get-categories', { cache: 'no-store', next: { revalidate: 60 } })
       const data = await res.json()
       setCategory(data.category)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const deleteategory = async id => {
+    try {
+      const confirmmation = confirm('Are you sure you want to delete category')
+      // console.log(confirmmation)
+      if (confirmmation) {
+        const data = await axios.delete(`/api/category/delete-category/${id}`)
+        alert('Category deleted successfully')
+        categoryData()
+      }
     } catch (err) {
       console.error(err)
     }
@@ -31,7 +45,12 @@ export default function Page() {
         {category.map(e => (
           <div>
             {e.name}
-            <a href={`/update-category/${e._id}`}>Edit</a>
+            <button className='submit-button-edit' href={`/update-category/${e._id}`}>
+              Edit
+            </button>
+            <button className='submit-button-edit' onClick={() => deleteategory(e._id)}>
+              Delete
+            </button>
           </div>
         ))}
       </div>

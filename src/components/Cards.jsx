@@ -55,7 +55,7 @@ export default function RecipeReviewCard({ name, group, user, date, image, price
         title={`${group} from ${user}`}
         subheader={`${date}`}
       />
-      <CardMedia component='img' onClick={handleOpen} height='200' image={`${image}`} />
+      {image !== null ? <CardMedia component='img' onClick={handleOpen} height='200' image={`${image}`} /> : ''}
       {/* <button onClick={handleOpen}>Open modal</button> */}
       <Modal
         open={open}
