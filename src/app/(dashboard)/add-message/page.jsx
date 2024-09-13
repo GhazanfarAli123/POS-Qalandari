@@ -128,7 +128,7 @@ export default function Page() {
             </Select>
           </FormControl>
           <div>
-            <span className='file-input'>
+            {/* <span className='file-input'>
               <input
                 type='file'
                 onChange={handleImageChange}
@@ -154,7 +154,7 @@ export default function Page() {
                 </svg>
                 <span>Upload file</span>
               </label>
-            </span>
+            </span> */}
           </div>
           <div>
             <button type='submit' className='submit-button'>
