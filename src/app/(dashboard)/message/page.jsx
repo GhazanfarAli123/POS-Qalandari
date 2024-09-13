@@ -26,7 +26,7 @@ export default function Page() {
   const [showDate, setShowDate] = useState(false)
   const [showGroup, setShowGroup] = useState(false)
   const [selectedDate, setSelectedDate] = useState(dayjs())
-
+  const [date, setDate] = useState(false)
   const [showCategroy, setShowCategroy] = useState(true)
 
   const itemsData = async () => {
@@ -97,9 +97,12 @@ export default function Page() {
     }
   }
 
-  const handleDateChange = newDate => {
-    setSelectedDate(newDate)
-    itemDataDate(newDate)
+  const handleDateChange = async => {
+    if (!showDate) {
+      setShowDate(true)
+    } else {
+      setShowDate(false)
+    }
   }
 
   useEffect(() => {
@@ -144,6 +147,15 @@ export default function Page() {
                     </button>
                   ))
                 : ''}
+              {date ? (
+                <div>
+                  <button className='category-button' onClick={() => handleDateChange()}>
+                    Calender
+                  </button>
+                </div>
+              ) : (
+                ''
+              )}
 
               {showDate ? (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -198,7 +210,7 @@ export default function Page() {
                 onClick={() => {
                   setShowCategroy(false)
                   setShowGroup(TrendingUpRounded)
-                  setShowDate(false)
+                  setDate(false)
                 }}
               >
                 Group
@@ -211,7 +223,7 @@ export default function Page() {
                 onClick={() => {
                   setShowCategroy(true)
                   setShowGroup(false)
-                  setShowDate(false)
+                  setDate(false)
                 }}
               >
                 Category
@@ -224,7 +236,7 @@ export default function Page() {
                 onClick={() => {
                   setShowCategroy(false)
                   setShowGroup(false)
-                  setShowDate(true)
+                  setDate(true)
                 }}
               >
                 Date
